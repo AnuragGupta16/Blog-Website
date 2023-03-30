@@ -104,11 +104,11 @@ const Login = () => {
             // setAccount({ name: response.data.name, username: response.data.username });
             
             
-            navigate("/blogs/?category=weekend-reads",{ replace: true });
+           
             Authenticated(true);
             // isUserAuthenticated(true)
         //    setUser(result.data.data);
-
+           navigate(`/blogs/?category=weekend-reads`)
         //  
         } else {
             showError('Something went wrong! please try again later');

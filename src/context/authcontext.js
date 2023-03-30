@@ -37,7 +37,7 @@ const [isUserAuthenticated,Authenticated]=useState(value);
         console.log(result.data.data);
         setUser(result.data.data);
 
-        navigate("/blogs/?category=weekend-reads",{ replace: true });
+        // navigate(`/blogs/?category=${category}`)
     
         
       } else {

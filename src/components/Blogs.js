@@ -3,19 +3,20 @@ import { useEffect } from "react";
 import { Link, useSearchParams } from 'react-router-dom';
 import { Grid, Box } from '@mui/material';
 import AuthContext from "../context/authcontext";
+import { useNavigate } from "react-router-dom/dist";
 import Blog from "./Blog";
 function Blogs()
 {
-    const { user,setUser,Authenticated,setBlogs,blogs,category,setcategory } = useContext(AuthContext);
+    const { user,setUser,Authenticated,setBlogs,blogs,setcategory } = useContext(AuthContext);
 const [searchParams] = useSearchParams();
-
-const category1 = searchParams.get('category');
+const navigate = useNavigate();
+const category=(searchParams.get('category'));
 useEffect(() => {
     const changeblogs=async ()=>
 {
     
-  console.log(category1);
-       const res = await fetch(`https://api-staging-v2.sploot.space/api/v2/public/cms/post-categories/${category1}`, {
+  console.log(category);
+       const res = await fetch(`https://api-staging-v2.sploot.space/api/v2/public/cms/post-categories/${category}`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -24,11 +25,12 @@ useEffect(() => {
         const result = await res.json();
         setBlogs(result.data.data);
 
+        
         console.log(result);
     
 }
   changeblogs();
-}, [category1]);
+}, [category]);
 
 
 return (
