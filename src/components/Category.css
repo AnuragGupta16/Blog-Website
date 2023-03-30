@@ -1,0 +1,34 @@
+.parent-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height:  120px;
+    max-width: 100%;
+    overflow-x: scroll;
+    /* overflow: hidden; */
+  
+    
+}
+.category-name {
+    text-decoration:none;
+    font-size: smaller;
+}
+
+
+.category-name a{
+    text-align: center;
+    text-decoration:none;
+    
+    
+}
+.ava{
+    align-items: center;
+}
+/* .category-item{
+    align-items: ;
+} */
+.boxcat {
+    justify-content: center;
+    text-align: center;
+    border-radius: 12px;
+}
