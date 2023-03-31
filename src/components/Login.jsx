@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { TextField, Box, Button, Typography, styled } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-import AuthContext from '../context/authcontext';
+
 import { textAlign } from '@mui/system';
+import { useDispatch, useSelector } from "react-redux";
+import { setAuthenticate } from '../redux/actions/actions';
 
 const Component = styled(Box)`
    background : white;
@@ -64,10 +66,10 @@ const loginInitialValues = {
 
 const Login = () => {
     const [login, setLogin] = useState(loginInitialValues);
-    const { user,setUser,Authenticated } = useContext(AuthContext);
+    const dispatch = useDispatch();
     const [error, showError] = useState('');
     const [account, toggleAccount] = useState('login');
-
+    
     const navigate = useNavigate();
    
 
@@ -96,7 +98,7 @@ const Login = () => {
 
         const result = await response.json();
         if (result.data) {
-            showError('');
+            
            console.log(result);
             localStorage.setItem("token", result.data.data.authToken);
            
@@ -105,7 +107,7 @@ const Login = () => {
             
             
            
-            Authenticated(true);
+            dispatch(setAuthenticate(true));
             // isUserAuthenticated(true)
         //    setUser(result.data.data);
            navigate(`/blogs/?category=weekend-reads`)

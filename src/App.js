@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { Routes as Switch, Route } from "react-router-dom";
-import { AuthContextProvider } from './context/authcontext';
+
 import { Box } from '@mui/system';
 import BlogPage from './pages/Blogpage';
 import Home from './pages/Home';
@@ -11,7 +11,7 @@ function App() {
    
    
     <BrowserRouter >
-    <AuthContextProvider>
+  
     {/* <Box style={{ marginTop: 64 }}> */}
 
      <Switch>
@@ -20,7 +20,7 @@ function App() {
            
           </Switch>
           {/* </Box> */}
-    </AuthContextProvider>
+  
     </BrowserRouter>
     
     

@@ -2,14 +2,18 @@ import React, { useContext } from "react";
 import { useEffect } from "react";
 import { Link, useSearchParams } from 'react-router-dom';
 import { Grid, Box } from '@mui/material';
-import AuthContext from "../context/authcontext";
+
 import { useNavigate } from "react-router-dom/dist";
 import Blog from "./Blog";
+import { useDispatch, useSelector } from "react-redux";
+import { setBlogs } from "../redux/actions/actions";
 function Blogs()
 {
-    const { user,setUser,Authenticated,setBlogs,blogs,setcategory } = useContext(AuthContext);
+   
+    let blogs= useSelector((state) => state.blogs);
 const [searchParams] = useSearchParams();
 const navigate = useNavigate();
+const dispatch=useDispatch();
 const category=(searchParams.get('category'));
 useEffect(() => {
     const changeblogs=async ()=>
@@ -23,7 +27,7 @@ useEffect(() => {
           },
         });
         const result = await res.json();
-        setBlogs(result.data.data);
+        dispatch(setBlogs(result.data.data));
 
         
         console.log(result);
@@ -38,7 +42,7 @@ return (
     <>
     {
         blogs?.length ? blogs.map(blog => (
-            <Grid item lg={2} sm={blog.length/2} xs={12}>
+            <Grid item lg={3} sm={blog.length/2} xs={12}>
                 <Link style={{textDecoration: 'none', color: 'inherit'}} to={`${blog.redirectUrl}`}>
                     <Blog blog={blog} />
                 </Link>
